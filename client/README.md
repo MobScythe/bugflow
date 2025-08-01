@@ -1,69 +1,120 @@
-# React + TypeScript + Vite
+# 🐛 Bug Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple yet powerful Bug Tracking system inspired by tools like Jira and Notion. Built for developers and teams to create, organize, and track software issues efficiently.
 
-Currently, two official plugins are available:
+![Bug Tracker Preview](./screenshot.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 📝 Create, edit, and delete bug reports
+- 🏷️ Add tags, severity, priority, and due dates
+- 📄 List view for structured issue management
+- 📊 Kanban board view grouped by bug status
+- 📎 Upload and attach images/files
+- 🔍 Filter and search by status, tags, or keywords
+- 👤 Assign reporters and (optionally) assignees
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 📦 Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Tech             | Usage                     |
+| ---------------- | ------------------------- |
+| **Node.js**      | Backend API               |
+| **Express**      | Routing and middleware    |
+| **PostgreSQL**   | Persistent data storage   |
+| **Prisma**       | ORM for database access   |
+| **React (Vite)** | Frontend client UI        |
+| **Multer**       | Image/file uploads        |
+| **Docker**       | Containerized development |
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/bug-tracker.git
+cd bug-tracker
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Set up the backend
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+cd server
+cp .env.example .env
+# Edit .env with your Postgres credentials
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+npm install
+npx prisma migrate dev --name init
+npm run dev
 ```
+
+### 3. Set up the frontend
+
+```bash
+cd ../client
+npm install
+npm run dev
+```
+
+---
+
+## 🐳 Using Docker (Optional)
+
+> You can run Postgres, the API, and frontend in isolated containers.
+
+```bash
+docker-compose up --build
+```
+
+---
+
+## 🧪 Seeding Sample Data
+
+Generate test bugs for development:
+
+```bash
+cd server
+npx prisma db seed
+```
+
+---
+
+## 📁 Folder Structure (Simplified)
+
+```bash
+bug-tracker/
+├── client/         # React (Vite) frontend
+│   └── ...
+├── server/         # Node.js backend with Prisma
+│   ├── uploads/    # Image uploads
+│   └── prisma/     # Schema and seeds
+├── docker/         # Docker config files
+├── docker-compose.yml
+└── README.md
+```
+
+---
+
+## 🛠️ TODO
+
+- [ ] Add user auth (JWT + roles)
+- [ ] Drag-and-drop reordering in Kanban
+- [ ] Comment system for bug discussion
+- [ ] Notifications & due date alerts
+
+---
+
+## 📸 Screenshot
+
+> Add `screenshot.png` or a GIF preview of your app UI here for a better first impression.
+
+---
+
+## 🧑‍💻 Author
+
+Made with ❤️ by [Your Name](https://github.com/your-username)
