@@ -13,22 +13,22 @@ import { Label } from "@/components/ui/label";
 import { PasswordInput } from "@/components/ui/passwordInput";
 import { Bug } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Separator } from "@/components/ui/separator";
 
 const Login = () => {
   const [password, setPassword] = useState<string>("");
 
   return (
-    <div className="flex justify-center items-center h-screen bg-neutral-950">
+    <div className="flex justify-center items-center h-screen">
       <Card className="w-full max-w-sm">
         <CardHeader>
-          <div className="mb-4 pb-5 border-b border-neutral-800">
-            <a href="#" className="flex items-center gap-2 font-medium">
-              <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
-                <Bug className="size-4" />
-              </div>
-              BugFlow
-            </a>
-          </div>
+          <a href="#" className="flex items-center gap-2 font-medium">
+            <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
+              <Bug className="size-4" />
+            </div>
+            BugFlow
+          </a>
+          <Separator className="mt-4 mb-5" />
           <CardTitle>Login to your account</CardTitle>
           <CardDescription>
             Enter your details below to login to your account

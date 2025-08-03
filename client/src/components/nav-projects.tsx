@@ -41,7 +41,7 @@ export function NavProjects({
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
               <a href={item.url}>
-                <CircleDashed className="text-blue-500" />
+                <CircleDashed className="text-rose-500" />
                 <span>{item.name}</span>
               </a>
             </SidebarMenuButton>
