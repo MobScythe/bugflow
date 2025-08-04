@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: bugflow_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: bugflow_db
+      POSTGRES_USER: bugflow_user
+      POSTGRES_PASSWORD: bugflow_password
+    ports:
+      - "5431:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
