@@ -6,18 +6,24 @@ import Projects from "@/pages/Projects";
 import DashboardLayout from "@/pages/DashboardLayout";
 import DashboardHome from "@/pages/DashboardHome";
 import Settings from "@/pages/Settings";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 function App() {
+  const isAuthenticated = false;
+
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/dashboard" element={<DashboardLayout />}>
-          <Route index element={<DashboardHome />} />
-          <Route path="projects" element={<Projects />} />
-          <Route path="settings" element={<Settings />} />
+
+        <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
+          <Route path="/dashboard" element={<DashboardLayout />}>
+            <Route index element={<DashboardHome />} />
+            <Route path="projects" element={<Projects />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
         </Route>
       </Routes>
     </Router>

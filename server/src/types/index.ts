@@ -9,7 +9,23 @@ export interface LoginRequest {
   password: string;
 }
 
-export interface JWTPayload {
-  userId: number;
+export interface UpdateRequest {
+  name: string;
   email: string;
+  password: string;
+}
+
+export type SafeUser = {
+  id: number;
+  name: string;
+  email: string;
+  createdAt: Date;
+};
+
+declare global {
+  namespace Express {
+    interface Request {
+      user?: SafeUser;
+    }
+  }
 }

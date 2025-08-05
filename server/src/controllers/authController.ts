@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { RegisterRequest } from "../types";
+import { LoginRequest, RegisterRequest, UpdateRequest } from "../types";
 import prisma from "../utils/database";
 import bcrypt from "bcryptjs";
 import { generateToken } from "../utils/jwt";
@@ -22,7 +22,7 @@ export const register = async (
   try {
     const existingUser = await prisma.user.findUnique({ where: { email } });
     if (existingUser) {
-      res.status(400).json({ message: "User already exists" });
+      res.status(409).json({ message: "User already exists" });
     }
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -37,9 +37,46 @@ export const register = async (
   }
 };
 
-export const login = async (req: Request, res: Response, next: Function) => {
+export const login = async (
+  req: Request<{}, {}, LoginRequest>,
+  res: Response,
+  next: Function
+) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return res.status(400).json({ message: "Email and password are required" });
+  }
   try {
-    return res.status(200).json({ message: "success" });
+    const user = await prisma.user.findUnique({ where: { email } });
+    if (!user) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: "Invalid email or password" });
+    }
+    const token = generateToken(user.id);
+    return res.status(200).json({ user, token });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateUser = async (
+  req: Request<{}, {}, UpdateRequest>,
+  res: Response,
+  next: Function
+) => {
+  const { name, email, password } = req.body;
+};
+
+export const checkAuth = async (
+  req: Request,
+  res: Response,
+  next: Function
+) => {
+  try {
+    res.status(200).json(req.user);
   } catch (error) {
     next(error);
   }
