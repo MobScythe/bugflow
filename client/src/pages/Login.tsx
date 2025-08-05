@@ -20,7 +20,7 @@ const Login = () => {
   const [password, setPassword] = useState<string>("");
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-screen p-4">
       <MotionWrapper className="w-full max-w-sm">
         <Card className="w-full max-w-sm">
           <CardHeader>
