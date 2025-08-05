@@ -19,20 +19,45 @@ model User {
   email String @unique
   password String
   createdAt DateTime @default(now())
+  Project Project[]
 }
 
-model Projects {
+model Project {
   id Int @id @default(autoincrement())
   name String 
+  description String?
+  userId Int
+  createdAt DateTime @default(now())
+  User User @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Bug Bug[]
+  Tag Tag[]
 }
 
-model Bugs {
+model Bug {
   id Int @id @default(autoincrement())
   name String 
+  description String?
+  priority String?
+  status String
+  projectId Int 
+  createdAt DateTime @default(now())
+  Project Project @relation(fields: [projectId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  BugTag BugTag[]
 }
 
-model Tags {
+model Tag {
   id Int @id @default(autoincrement())
   name String
   color String
+  projectId Int
+  Project Project @relation(fields: [projectId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  BugTag BugTag[]
+}
+
+model BugTag {
+  bugId Int
+  tagId Int
+  Bug Bug @relation(fields: [bugId], references: [id])
+  Tag Tag @relation(fields: [tagId], references: [id])
+  @@id([bugId, tagId])
 }
