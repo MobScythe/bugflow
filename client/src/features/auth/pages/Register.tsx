@@ -59,7 +59,7 @@ const Register = () => {
   return (
     <div className="flex justify-center items-center h-screen p-4">
       <MotionWrapper className="w-full max-w-sm">
-        <Card className="w-full max-w-sm">
+        <Card className="w-full">
           <CardHeader>
             <a href="#" className="flex items-center gap-2 font-medium">
               <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">

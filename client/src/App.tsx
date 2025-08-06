@@ -10,6 +10,7 @@ import ProtectedRoute from "@/features/auth/components/ProtectedRoute";
 import { Toaster } from "./shared/ui/sonner";
 import { AuthProvider } from "@/features/auth/context/AuthContext";
 import PublicRoute from "./features/auth/components/PublicRoute";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -30,6 +31,8 @@ function App() {
               <Route path="settings" element={<Settings />} />
             </Route>
           </Route>
+
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
     </AuthProvider>
