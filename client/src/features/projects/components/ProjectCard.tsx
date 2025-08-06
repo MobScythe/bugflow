@@ -20,7 +20,9 @@ const ProjectCard = () => {
   return (
     <Card className="w-full gap-5 py-5 overflow-hidden">
       <CardHeader className="flex justify-between">
-        <div className="h-20 w-20 bg-black rounded-2xl"></div>
+        <div className="py-1 px-3 text-xs rounded-md bg-rose-400/10 text-rose-400">
+          Mobile App
+        </div>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-8 w-8 p-0">

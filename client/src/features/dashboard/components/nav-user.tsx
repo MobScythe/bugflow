@@ -31,6 +31,7 @@ import {
 } from "@/shared/components/ui/sidebar";
 import { useAuth } from "@/features/auth/context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 export function NavUser({
   user,
@@ -47,7 +48,11 @@ export function NavUser({
 
   const handleLogout = () => {
     clearAuthentication();
-    navigate("/login"); // Redirect to login page after logout
+    toast.success("Logout successful", {
+      position: "top-center",
+      className: "text-green-700",
+    });
+    navigate("/login");
   };
 
   return (

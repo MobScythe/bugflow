@@ -25,13 +25,13 @@ import { Separator } from "@/shared/components/ui/separator";
 // This is sample data.
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
+    name: "monki dad",
+    email: "dad@monki.com",
     avatar: "/avatars/shadcn.jpg",
   },
   teams: [
     {
-      name: "Acme Inc",
+      name: "Monke Inc",
       logo: GalleryVerticalEnd,
       plan: "Enterprise",
     },
