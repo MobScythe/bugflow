@@ -31,7 +31,8 @@ export const register = async (
       data: { name, email, password: hashedPassword },
     });
     const token = generateToken(newUser.id);
-    return res.status(201).json({ newUser, token });
+    const { password: _, ...safeUser } = newUser;
+    return res.status(201).json({ newUser: safeUser, token });
   } catch (error) {
     next(error);
   }
@@ -56,7 +57,8 @@ export const login = async (
       return res.status(401).json({ message: "Invalid email or password" });
     }
     const token = generateToken(user.id);
-    return res.status(200).json({ user, token });
+    const { password: _, ...safeUser } = user;
+    return res.status(200).json({ user: safeUser, token });
   } catch (error) {
     next(error);
   }

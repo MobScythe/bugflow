@@ -1,32 +1,40 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "@/pages/Home";
-import Login from "@/pages/Login";
-import Register from "@/pages/Register";
-import Projects from "@/pages/Projects";
-import DashboardLayout from "@/pages/DashboardLayout";
-import DashboardHome from "@/pages/DashboardHome";
-import Settings from "@/pages/Settings";
-import ProtectedRoute from "@/components/ProtectedRoute";
+import Landing from "@/pages/Landing";
+import Login from "@/features/auth/pages/Login";
+import Register from "@/features/auth/pages/Register";
+import Projects from "@/features/projects/pages/Projects";
+import DashboardLayout from "@/features/dashboard/components/DashboardLayout";
+import Home from "@/features/dashboard/pages/Home";
+import Settings from "@/features/dashboard/pages/Settings";
+import ProtectedRoute from "@/features/auth/components/ProtectedRoute";
+import { Toaster } from "./shared/ui/sonner";
+import { AuthProvider } from "@/features/auth/context/AuthContext";
+import PublicRoute from "./features/auth/components/PublicRoute";
 
 function App() {
-  const isAuthenticated = false;
-
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+    <AuthProvider>
+      <>
+        <Toaster />
+        <Router>
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route element={<PublicRoute />}>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </Route>
 
-        <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
-          <Route path="/dashboard" element={<DashboardLayout />}>
-            <Route index element={<DashboardHome />} />
-            <Route path="projects" element={<Projects />} />
-            <Route path="settings" element={<Settings />} />
-          </Route>
-        </Route>
-      </Routes>
-    </Router>
+            <Route element={<ProtectedRoute />}>
+              <Route path="/dashboard" element={<DashboardLayout />}>
+                <Route index element={<Home />} />
+                <Route path="projects" element={<Projects />} />
+                <Route path="settings" element={<Settings />} />
+              </Route>
+            </Route>
+          </Routes>
+        </Router>
+      </>
+    </AuthProvider>
   );
 }
 
