@@ -47,7 +47,7 @@ const Register = () => {
       });
       navigate("/login", { replace: true });
     } catch (error: any) {
-      toast.error(error.message, {
+      toast.error(error.response.data.message || error.message, {
         position: "top-center",
         className: "text-red-700",
       });
@@ -81,6 +81,7 @@ const Register = () => {
                   <Input
                     id="name"
                     type="name"
+                    name="name"
                     placeholder="John Doe"
                     required
                   />
@@ -90,6 +91,7 @@ const Register = () => {
                   <Input
                     id="email"
                     type="email"
+                    name="email"
                     placeholder="m@example.com"
                     required
                   />

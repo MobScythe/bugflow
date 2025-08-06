@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
 import { clearToken, getToken, setToken } from "@/shared/utils/authStorage";
 
@@ -18,19 +18,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(!!getToken());
 
   const setAuthenticated = (token: string) => {
-    setToken(token); // Save the token
-    setIsAuthenticated(true); // Update the state
+    setToken(token);
+    setIsAuthenticated(true);
   };
 
   const clearAuthentication = () => {
-    clearToken(); // Clear the token
-    setIsAuthenticated(false); // Update the state
+    clearToken();
+    setIsAuthenticated(false);
   };
-
-  useEffect(() => {
-    // Sync state with token on mount
-    setIsAuthenticated(!!getToken());
-  }, []);
 
   return (
     <AuthContext.Provider
