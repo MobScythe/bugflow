@@ -14,26 +14,24 @@ import PublicRoute from "./features/auth/components/PublicRoute";
 function App() {
   return (
     <AuthProvider>
-      <>
-        <Toaster />
-        <Router>
-          <Routes>
-            <Route path="/" element={<Landing />} />
-            <Route element={<PublicRoute />}>
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-            </Route>
+      <Toaster />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route element={<PublicRoute />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+          </Route>
 
-            <Route element={<ProtectedRoute />}>
-              <Route path="/dashboard" element={<DashboardLayout />}>
-                <Route index element={<Home />} />
-                <Route path="projects" element={<Projects />} />
-                <Route path="settings" element={<Settings />} />
-              </Route>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/dashboard" element={<DashboardLayout />}>
+              <Route index element={<Home />} />
+              <Route path="projects" element={<Projects />} />
+              <Route path="settings" element={<Settings />} />
             </Route>
-          </Routes>
-        </Router>
-      </>
+          </Route>
+        </Routes>
+      </Router>
     </AuthProvider>
   );
 }

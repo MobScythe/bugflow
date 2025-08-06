@@ -31,7 +31,7 @@ const Login = () => {
       const formData = new FormData(event.currentTarget);
       const email = formData.get("email") as string;
       const { token } = await login({ email, password });
-      setAuthenticated(token); // Update the context
+      setAuthenticated(token);
 
       toast.success("Login successful", {
         position: "top-center",
