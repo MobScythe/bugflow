@@ -11,31 +11,34 @@ import { Toaster } from "./shared/ui/sonner";
 import { AuthProvider } from "@/features/auth/context/AuthContext";
 import PublicRoute from "./features/auth/components/PublicRoute";
 import NotFound from "./pages/NotFound";
+import { ThemeProvider } from "./shared/context/ThemeContext";
 
 function App() {
   return (
-    <AuthProvider>
-      <Toaster />
-      <Router>
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route element={<PublicRoute />}>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Route>
-
-          <Route element={<ProtectedRoute />}>
-            <Route path="/dashboard" element={<DashboardLayout />}>
-              <Route index element={<Home />} />
-              <Route path="projects" element={<Projects />} />
-              <Route path="settings" element={<Settings />} />
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <AuthProvider>
+        <Toaster />
+        <Router>
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route element={<PublicRoute />}>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
             </Route>
-          </Route>
 
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Router>
-    </AuthProvider>
+            <Route element={<ProtectedRoute />}>
+              <Route path="/dashboard" element={<DashboardLayout />}>
+                <Route index element={<Home />} />
+                <Route path="projects" element={<Projects />} />
+                <Route path="settings" element={<Settings />} />
+              </Route>
+            </Route>
+
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Router>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
