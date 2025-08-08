@@ -61,12 +61,12 @@ const Register = () => {
       <MotionWrapper className="w-full max-w-sm">
         <Card className="w-full">
           <CardHeader>
-            <a href="#" className="flex items-center gap-2 font-medium">
+            <Link to="/" className="flex items-center gap-2 font-medium">
               <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
                 <Bug className="size-4" />
               </div>
               BugFlow
-            </a>
+            </Link>
             <Separator className="mt-4 mb-5" />
             <CardTitle>Create a new account</CardTitle>
             <CardDescription>
@@ -122,7 +122,7 @@ const Register = () => {
                 </Button>
                 <Link
                   to="/login"
-                  className="text-neutral-500 inline-block text-xs hover:text-neutral-300 transition"
+                  className="text-muted-foreground inline-block text-xs hover:text-neutral-300 transition"
                 >
                   Already have an account? Login
                 </Link>

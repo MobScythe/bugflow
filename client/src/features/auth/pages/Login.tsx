@@ -53,12 +53,12 @@ const Login = () => {
       <MotionWrapper className="w-full max-w-sm">
         <Card className="w-full">
           <CardHeader>
-            <a href="#" className="flex items-center gap-2 font-medium">
+            <Link to="/" className="flex items-center gap-2 font-medium">
               <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
                 <Bug className="size-4" />
               </div>
               BugFlow
-            </a>
+            </Link>
             <Separator className="mt-4 mb-5" />
             <CardTitle>Login to your account</CardTitle>
             <CardDescription>
@@ -88,7 +88,7 @@ const Login = () => {
                   />
                   <a
                     href="#"
-                    className="ml-auto text-neutral-500 inline-block text-xs hover:text-neutral-300 transition"
+                    className="ml-auto text-muted-foreground inline-block text-xs hover:text-neutral-300 transition"
                   >
                     Forgot your password?
                   </a>
@@ -101,7 +101,7 @@ const Login = () => {
                 </Button>
                 <Link
                   to="/register"
-                  className="text-neutral-500 inline-block text-xs hover:text-neutral-300 transition"
+                  className="text-muted-foreground inline-block text-xs hover:text-neutral-300 transition"
                 >
                   Don't have an account? Create an account
                 </Link>

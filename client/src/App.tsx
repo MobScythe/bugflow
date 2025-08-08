@@ -7,7 +7,7 @@ import DashboardLayout from "@/features/dashboard/components/DashboardLayout";
 import Home from "@/features/dashboard/pages/Home";
 import Settings from "@/features/dashboard/pages/Settings";
 import ProtectedRoute from "@/features/auth/components/ProtectedRoute";
-import { Toaster } from "./shared/ui/sonner";
+import { Toaster } from "./shared/components/ui/sonner";
 import { AuthProvider } from "@/features/auth/context/AuthContext";
 import PublicRoute from "./features/auth/components/PublicRoute";
 import NotFound from "./pages/NotFound";
