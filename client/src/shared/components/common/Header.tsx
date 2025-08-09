@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 import ThemeToggle from "./ThemeToggle";
 import { Bug, MenuIcon, XIcon } from "lucide-react";
+import { motion } from "motion/react";
 
 import NavMenu from "./NavMenu";
 
@@ -67,7 +68,12 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="fixed z-30 p-5 w-full flex justify-center">
+    <motion.div
+      className="fixed z-50 p-5 w-full flex justify-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+    >
       <div className="bg-card/10 backdrop-blur-lg text-card-foreground w-full p-4 flex items-center justify-between gap-5 rounded-xl border container">
         <div className="flex lg:w-1/5 pl-1">
           <Link to="#" className="flex items-center gap-2 font-medium">
@@ -121,7 +127,7 @@ const Header = () => {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,5 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Landing from "@/pages/Landing";
+import { ThemeProvider } from "./shared/context/ThemeContext";
+import { AuthProvider } from "@/features/auth/context/AuthContext";
+import { Toaster } from "./shared/components/ui/sonner";
+import Landing from "@/pages/landing/Landing";
 import Login from "@/features/auth/pages/Login";
 import Register from "@/features/auth/pages/Register";
 import Projects from "@/features/projects/pages/Projects";
@@ -7,11 +10,9 @@ import DashboardLayout from "@/features/dashboard/components/DashboardLayout";
 import Home from "@/features/dashboard/pages/Home";
 import Settings from "@/features/dashboard/pages/Settings";
 import ProtectedRoute from "@/features/auth/components/ProtectedRoute";
-import { Toaster } from "./shared/components/ui/sonner";
-import { AuthProvider } from "@/features/auth/context/AuthContext";
 import PublicRoute from "./features/auth/components/PublicRoute";
 import NotFound from "./pages/NotFound";
-import { ThemeProvider } from "./shared/context/ThemeContext";
+import StaticLayout from "@/pages/StaticLayout";
 
 function App() {
   return (
@@ -20,7 +21,10 @@ function App() {
         <Toaster />
         <Router>
           <Routes>
-            <Route path="/" element={<Landing />} />
+            <Route element={<StaticLayout />}>
+              <Route index element={<Landing />} />
+            </Route>
+
             <Route element={<PublicRoute />}>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
