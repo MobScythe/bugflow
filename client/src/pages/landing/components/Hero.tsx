@@ -8,7 +8,7 @@ const Hero = () => {
   return (
     <div className="relative flex flex-col items-center w-full gap-16">
       <FadeinScroll className="w-full max-w-3xl text-center flex flex-col items-center gap-8">
-        <div className="flex flex-row items-center gap-2">
+        <div className="flex flex-row items-center gap-4">
           <div className="flex items-center">
             <div className="w-14 h-[1px] bg-gradient-to-r from-transparent to-muted-foreground"></div>
             <div className="w-1 h-1 bg-muted-foreground rounded-full"></div>
